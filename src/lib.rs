@@ -5,12 +5,14 @@
 //!
 //! ## From `&[u8]`
 //! ```
+//! # use std::io::Cursor;
 //! use deku::prelude::*;
 //! use asterix::*;
 //! use asterix::data_item::*;
 //!
 //! let bytes = &[0x22, 0x00, 0x0b, 0xf0, 0x19, 0x0d, 0x02, 0x35, 0x6d, 0xfa, 0x60];
-//! let (_, mut packet) = AsterixPacket::from_bytes((bytes, 0)).unwrap();
+//! let mut cursor = Cursor::new(bytes);
+//! let (_, mut packet) = AsterixPacket::from_reader((&mut cursor, 0)).unwrap();
 //! ```
 //!
 //! ## Packet Creation
